@@ -4,45 +4,20 @@ let totalPages = 1;
 function fetchUserData() {
     const username = $('#username').val();
     const userUrl = `https://api.github.com/users/${username}`;
-    const cacheKey = `userData_${username}`;
 
-    const cachedData = getCachedData(cacheKey);
-    if (cachedData && !isCacheExpired(cachedData.timestamp)) {
-        displayProfileCard(cachedData.data);
-    } else {
-        $('#loader').show();
+    $('#loader').show();
 
-        $.get(userUrl, function (userData, status) {
-            $('#loader').hide();
+    $.get(userUrl, function (userData, status) {
+        $('#loader').hide();
 
-            if (status === 'success') {
-                saveToCache(cacheKey, userData);
-                displayProfileCard(userData);
-            } else {
-                $('#profileCard').html('<p>Error fetching user data.</p>');
-            }
-        }).fail(function () {
+        if (status === 'success') {
+            displayProfileCard(userData);
+        } else {
             $('#profileCard').html('<p>Error fetching user data.</p>');
-        });
-    }
-}
-
-function getCachedData(key) {
-    const cachedData = localStorage.getItem(key);
-    return cachedData ? JSON.parse(cachedData) : null;
-}
-
-function isCacheExpired(timestamp) {
-    const expirationTime = 60 * 60 * 1000; // 1 hour in milliseconds
-    return Date.now() - timestamp > expirationTime;
-}
-
-function saveToCache(key, data) {
-    const cacheData = {
-        data: data,
-        timestamp: Date.now(),
-    };
-    localStorage.setItem(key, JSON.stringify(cacheData));
+        }
+    }).fail(function () {
+        $('#profileCard').html('<p>Error fetching user data.</p>');
+    });
 }
 
 function displayProfileCard(user) {
