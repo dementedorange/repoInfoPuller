@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Fyle Intern Project</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Github Repositories</h1>
+
+        <div class="options">
+            <label for="username">Enter Github Username:</label>
+            <input type="text" id="username" placeholder="Enter username">
+            <button onclick="fetchUserData(), fetchRepositories()">Fetch User Data</button>
+            <label for="perPage">Repositories per page:</label>
+            <select id="perPage">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+        </div>
+
+        <div id="loader" class="hidden">Loading...</div>
+
+        <div class="profile-card" id="profileCard"></div>
+
+        <div class="repositories-container" id="repositoriesContainer"></div>
+
+        <div id="pagination"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
