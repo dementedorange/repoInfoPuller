@@ -54,7 +54,7 @@ function displayProfileCard(user) {
                 <p><strong>${user.login}</strong></p>
                 <p><strong>${user.bio}</strong></p>
                 <p><strong>${user.location}</strong></p>
-                <p><${user.html_url}" target="_blank">GitHub Profile</a></p>
+                <p><a href="${user.html_url}" target="_blank">GitHub Profile</a></p>            
             </div>
         </div>
     `);
