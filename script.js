@@ -48,14 +48,18 @@ function fetchRepositories() {
         $('#loader').hide();
 
         if (status === 'success') {
-            totalPages = parseInt(xhr.getResponseHeader('Link').match(/&page=(\d+)>; rel="last"/)[1]);
+            const linkHeader = xhr.getResponseHeader('Link');
+
+            if (linkHeader) {
+                totalPages = parseInt(linkHeader.match(/&page=(\d+)>; rel="last"/)[1]);
+            }
             displayRepositories(repoData);
             displayPagination();
         } else {
             $('#repositoriesContainer').html('<p>Error fetching repositories.</p>');
         }
     });
-}
+
 
 async function displayRepositories(repositories) {
     const repositoriesContainer = $('#repositoriesContainer');
