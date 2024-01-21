@@ -59,7 +59,7 @@ function fetchRepositories() {
             $('#repositoriesContainer').html('<p>Error fetching repositories.</p>');
         }
     });
-
+}
 
 async function displayRepositories(repositories) {
     const repositoriesContainer = $('#repositoriesContainer');
