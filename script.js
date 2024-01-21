@@ -28,12 +28,16 @@ function displayProfileCard(user) {
             <div class="info">
                 <p><strong>${user.login}</strong></p>
                 <p><strong>${user.bio}</strong></p>
-                <p><strong>${user.location}</strong></p>
+                <div style="display: flex; align-items: center;">
+                    <span class="fas fa-map-marker-alt" style="font-size: 24px; margin-right: 8px;"></span>
+                    <p><strong>${user.location}</strong></p>
+                </div>
                 <p><a href="${user.html_url}" target="_blank">GitHub Profile</a></p>            
             </div>
         </div>
     `);
 }
+
 
 function fetchRepositories() {
     const username = $('#username').val();
